@@ -5,7 +5,7 @@ inherit gst-plugins
 
 NAME="gstreamer1.0-plugins-ugly"
 VERSION=1.4.5
-RELEASE=1
+RELEASE=2
 CATEGORY="Audio Video"
 SUMMARY="GStreamer 1.0 Ugly plugins"
 DESCRIPTION="GStreamer Ugly Plug-ins is a set of plug-ins that have good
