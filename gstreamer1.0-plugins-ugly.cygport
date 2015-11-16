@@ -4,8 +4,8 @@ GST_PLUGINS_DISABLE=
 inherit gst-plugins
 
 NAME="gstreamer1.0-plugins-ugly"
-VERSION=1.4.5
-RELEASE=2
+VERSION=1.6.1
+RELEASE=1
 CATEGORY="Audio Video"
 SUMMARY="GStreamer 1.0 Ugly plugins"
 DESCRIPTION="GStreamer Ugly Plug-ins is a set of plug-ins that have good
@@ -18,24 +18,11 @@ PKG_NAMES="${NAME} ${NAME}-doc"
 
 for ext in ${GST_PLUGINS_ENABLE}
 do
-	PKG_NAMES+=" ${NAME%-ugly}-${ext}"
-	declare gstreamer1_0_plugins_${ext}_SUMMARY="GStreamer 1.0 ${ext} plugin"
-	declare gstreamer1_0_plugins_${ext}_CONTENTS=" usr/lib/gstreamer-1.0/cyggst${ext%play}*.dll"
-	gstreamer1_0_plugins_ugly_CONTENTS+=" --exclude=cyggst${ext%play}*.dll"
-
-	case ${ext} in
-		amrnb)
-			gstreamer1_0_plugins_amrnb_CONTENTS+=" usr/share/gstreamer-1.0/presets/GstAmrnbEnc.prs"
-			gstreamer1_0_plugins_ugly_CONTENTS+=" --exclude=GstAmrnbEnc.prs"
-		;;
-		x264)
-			gstreamer1_0_plugins_x264_CONTENTS+=" usr/share/gstreamer-1.0/presets/GstX264Enc.prs"
-			gstreamer1_0_plugins_ugly_CONTENTS+=" --exclude=GstX264Enc.prs"
-		;;
-	esac
+	gstreamer1_0_plugins_ugly_OBSOLETES+=" ${NAME%-ugly}-${ext}"
 done
+unset ext
 
-gstreamer1_0_plugins_ugly_CONTENTS+=" --exclude=gtk-doc usr/"
+gstreamer1_0_plugins_ugly_CONTENTS=" --exclude=gtk-doc usr/"
 gstreamer1_0_plugins_ugly_doc_CATEGORY="Doc"
 gstreamer1_0_plugins_ugly_doc_CONTENTS="usr/share/gtk-doc/"
 
