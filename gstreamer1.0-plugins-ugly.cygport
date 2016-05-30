@@ -4,7 +4,7 @@ GST_PLUGINS_DISABLE=
 inherit gst-plugins
 
 NAME="gstreamer1.0-plugins-ugly"
-VERSION=1.6.3
+VERSION=1.6.4
 RELEASE=1
 CATEGORY="Audio Video"
 SUMMARY="GStreamer 1.0 Ugly plugins"
