@@ -1,11 +1,11 @@
-GST_PLUGINS_ENABLE="a52dec amrnb amrwb cdio dvdread lame mad mpeg2dec
-                    sidplay twolame x264"
-GST_PLUGINS_DISABLE=
+GST_PLUGINS_ENABLE="a52dec amrnb amrwb lame mpeg2dec twolame x264"
+# shipped in ugly-free
+GST_PLUGINS_DISABLE="cdio dvdread mad sidplay xingmux"
 inherit gst-plugins
 
 NAME="gstreamer1.0-plugins-ugly"
 VERSION=1.6.4
-RELEASE=1
+RELEASE=2
 CATEGORY="Audio Video"
 SUMMARY="GStreamer 1.0 Ugly plugins"
 DESCRIPTION="GStreamer Ugly Plug-ins is a set of plug-ins that have good
@@ -14,16 +14,18 @@ The license on either the plug-ins or the supporting libraries might not be
 how we'd like. The code might be widely known to present patent problems in
 some jurisdictions."
 
-PKG_NAMES="${NAME} ${NAME}-doc"
-
+PKG_NAMES="${NAME}"
+gstreamer1_0_plugins_ugly_REQUIRES="${NAME}-free"
 for ext in ${GST_PLUGINS_ENABLE}
 do
 	gstreamer1_0_plugins_ugly_OBSOLETES+=" ${NAME%-ugly}-${ext}"
 done
 unset ext
 
-gstreamer1_0_plugins_ugly_CONTENTS=" --exclude=gtk-doc usr/"
-gstreamer1_0_plugins_ugly_doc_CATEGORY="Doc"
-gstreamer1_0_plugins_ugly_doc_CONTENTS="usr/share/gtk-doc/"
+CYGCONF_ARGS="--disable-gtk-doc"
 
-KEEP_LA_FILES="none"
+src_install() {
+	cd ${B}
+	cyginstall -C gst
+	cyginstall -C ext
+}
