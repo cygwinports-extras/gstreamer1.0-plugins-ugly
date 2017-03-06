@@ -1,11 +1,11 @@
 GST_PLUGINS_ENABLE="a52dec amrnb amrwb lame mpeg2dec twolame x264"
 # shipped in ugly-free
-GST_PLUGINS_DISABLE="cdio dvdread mad sidplay xingmux"
+GST_PLUGINS_DISABLE="cdio dvdread mad mpg123 sidplay xingmux"
 inherit gst-plugins
 
 NAME="gstreamer1.0-plugins-ugly"
-VERSION=1.6.4
-RELEASE=2
+VERSION=1.10.4
+RELEASE=1
 CATEGORY="Audio Video"
 SUMMARY="GStreamer 1.0 Ugly plugins"
 DESCRIPTION="GStreamer Ugly Plug-ins is a set of plug-ins that have good
